@@ -1,0 +1,40 @@
+type User {
+  _id: String
+  email: String
+  videos: [Video]
+}
+
+type Video {
+  _id: String
+  title: String
+  detail: String
+  vote: Int
+  user: User
+  voters: User
+  comments: [Comment]
+}
+
+type Comment {
+  _id: String
+  detail: String
+  vote: Int
+  user: User
+  voters: User
+}
+
+type Query {
+  user(token: String): User
+  users(token: String): [User]
+  video(token: String): Video
+  videos(token: String): [Video]
+  comment(token: String): Comment
+  comments(token: String): [Comment]
+}
+
+type Mutation {
+  commentVideo( id: String, detail: String ): Comment
+  voteVideo( id: String, vote: Int ): Video
+  voteComment( id: String, vote: Int ): Comment
+  deleteComment(id: String): Comment
+  deleteVideo(id: String): Video
+}
